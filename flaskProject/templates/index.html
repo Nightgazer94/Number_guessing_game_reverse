@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Number Guessing Game</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Number Guessing Game</h1>
+        {% if guess %}
+            <p>I guess the number is {{ guess }}. Tell me if it's too low, too high, or if I guessed correctly.</p>
+            <form method="post">
+                <input type="hidden" name="min" value="{{ min_value }}">
+                <input type="hidden" name="max" value="{{ max_value }}">
+                <button name="response" value="too low">Too low</button>
+                <button name="response" value="too high">Too high</button>
+                <button name="response" value="you guessed">You guessed</button>
+            </form>
+        {% else %}
+            <p>Think of a number between 1 and 1000, and let me guess it!</p>
+            <form method="post">
+                <input type="hidden" name="min" value="0">
+                <input type="hidden" name="max" value="1000">
+                <button type="submit">Start</button>
+            </form>
+        {% endif %}
+    </div>
+</body>
+</html>
